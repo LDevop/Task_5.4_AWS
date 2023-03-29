@@ -1,0 +1,25 @@
+---
+- name: PHP_7.3
+  hosts: DEV_SERVER
+
+  tasks:
+    - name: installing Software Remi Repositories
+      ansible.builtin.yum:
+        #name: https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+        update_cache: true
+        state: present
+
+    - name: Installing php
+      ansible.builtin.yum:
+        enablerepo: "remi,remi-php73" 
+        name:
+        - php
+        - php-common
+        - php-cli
+        - php-gd
+        - php-curl 
+        - php-mysqlnd
+        - php-fpm
+        - php-mysqli
+        state: latest
+    

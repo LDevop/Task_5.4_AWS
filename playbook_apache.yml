@@ -1,0 +1,30 @@
+---
+- name: Install apache
+  hosts: DEV_SERVER
+
+  tasks:
+    - name: Install apache WebServer
+      ansible.builtin.dnf:
+        name: httpd
+        state: latest
+
+    # - name: Copy mypage to DEV_CENTOS_SERVERS
+    #   copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+    #   notify: Restart Apache
+    - name: Start WebServer and make it Enable on boot
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+      # heandlers:
+      # - name: Restart Apache
+      #   service: name=httpd state=restarted
+    # - name: Enable the firewall port for Apache
+    #   firewalld:
+    #     service: http
+    #     zone: public
+    #     port: 80/tcp
+    #     permanent: true
+    #     state: enabled
+    #     immediate: yes

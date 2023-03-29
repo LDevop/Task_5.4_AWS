@@ -1,0 +1,21 @@
+---
+- name: Installing node.js and NPM
+  hosts: DEV_SERVER
+  tasks:
+    - name: Install epel, nodejs
+      ansible.builtin.dnf:
+        update_cache: true
+        name:
+          #- epel-release
+          - nodejs
+          - npm
+        state: latest
+    - name: check version
+      ansible.builtin.shell: node --version && npm --version
+      register: node_npm_version
+   
+    - debug:
+        msg:
+          - "{{ node_npm_version.stdout_lines[0]}}"
+          - "{{ node_npm_version.stdout_lines[1]}}"
+

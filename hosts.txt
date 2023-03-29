@@ -1,0 +1,2 @@
+[DEV_SERVER]
+redhat_1 ansible_host=ec2-3-70-239-200.eu-central-1.compute.amazonaws.com owner=Denis
